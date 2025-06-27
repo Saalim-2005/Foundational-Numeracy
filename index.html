@@ -9,18 +9,18 @@
   <!-- ✅ Open Graph Meta Tags for Social Media Previews -->
   <meta property="og:title" content="Foundational Numeracy Training">
   <meta property="og:description" content="From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8">
-  <meta property="og:image" content="https://saalim-2005.github.io/nep2020-math-training/banner.jpeg">
+  <meta property="og:image" content="https://saalim-2005.github.io/Foundational-Numeracy/banner.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://saalim-2005.github.io/nep2020-math-training/">
+  <meta property="og:url" content="https://saalim-2005.github.io/Foundational-Numeracy/">
 
   <!-- ✅ Twitter Card Preview -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Foundational Numeracy Training">
   <meta name="twitter:description" content="From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8">
-  <meta name="twitter:image" content="https://saalim-2005.github.io/nep2020-math-training/banner.jpeg">
+  <meta name="twitter:image" content="https://saalim-2005.github.io/Foundational-Numeracy/banner.jpg">
   <!-- ✅ Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -500,27 +500,42 @@
     </section>
 
 
-    <!-- ✅ PDF section also OUTSIDE -->
     <section id="pdf-section">
       <h2>📄 View Full Training PDF</h2>
       <div style="position: relative; max-width: 100%; margin: auto;">
-        <div id="pdf-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-             background: rgba(255,255,255,0.8); display: flex; justify-content: center; 
-             align-items: center; font-weight: bold; font-size: 1.2rem; color: #005a87;">
+        
+        <!-- Loading Overlay -->
+        <div id="pdf-loading" style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(255,255,255,0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 1.2rem;
+          color: #005a87;
+          z-index: 10;
+        ">
           Loading PDF…
         </div>
-
-        <iframe src="Foundational-Numeracy.pdf" width="100%" height="600px" style="border: none;"></iframe>
-
-
-      
+    
+        <!-- PDF Viewer -->
+        <iframe id="pdf-frame"
+          src="Foundational-Numeracy.pdf"
+          width="100%"
+          height="600px"
+          style="border: none; z-index: 1;"
+        ></iframe>
       </div>
-
-      <div class="btn-container">
+    
+      <!-- Action Buttons -->
+      <div class="btn-container" style="margin-top: 1rem;">
         <a class="btn" href="https://saalim-2005.github.io/Foundational-Numeracy/Foundational-Numeracy.pdf" target="_blank">📥 Download PDF</a>
-
-<a class="btn" href="https://saalim-2005.github.io/Foundational-Numeracy/Foundational-Numeracy.pdf" target="_blank">🖥️ Fullscreen View</a>
-
+        <a class="btn" href="https://saalim-2005.github.io/Foundational-Numeracy/Foundational-Numeracy.pdf" target="_blank">🖥️ Fullscreen View</a>
       </div>
     </section>
 
@@ -613,23 +628,23 @@
   <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Top</button>
 
   <script>
-    // Preloader
+    // ✅ Preloader
     window.addEventListener("load", () => {
       document.getElementById("preloader").style.display = "none";
     });
-
-    // Section reveal on scroll
+  
+    // ✅ Section reveal on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add("visible");
       });
     }, { threshold: 0.1 });
-
+  
     document.querySelectorAll("section").forEach(section => {
       observer.observe(section);
     });
-
-    // ESC key to close QR popup and lightbox
+  
+    // ✅ ESC key to close QR popups and lightbox
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         const popup = document.getElementById('qr-popup');
@@ -640,28 +655,31 @@
         if (feedbackPopup) feedbackPopup.style.display = 'none';
       }
     });
-
+  
     // ✅ QR Code Toggle Function (Quiz)
     function toggleQRPopup() {
       const popup = document.getElementById('qr-popup');
       popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     }
-
+  
     // ✅ QR Code Toggle Function (Feedback)
     function toggleQRPopupFeedback() {
       const popup = document.getElementById('qr-popup-feedback');
       popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     }
-
+  
     // ✅ PDF Loading Overlay Hide
-    const pdfFrame = document.getElementById('pdf-frame');
-    if (pdfFrame) {
-      pdfFrame.addEventListener('load', function () {
-        const loadingDiv = document.getElementById('pdf-loading');
-        if (loadingDiv) loadingDiv.style.display = 'none';
-      });
-    }
-
+    window.addEventListener("DOMContentLoaded", () => {
+      const pdfFrame = document.getElementById('pdf-frame');
+      const loadingDiv = document.getElementById('pdf-loading');
+  
+      if (pdfFrame && loadingDiv) {
+        pdfFrame.addEventListener('load', () => {
+          loadingDiv.style.display = 'none';
+        });
+      }
+    });
+  
     // ✅ PDF Fullscreen Toggle
     function openPDFFullscreen() {
       window.open(
@@ -669,14 +687,14 @@
         '_blank'
       );
     }
-
+  
     // ❌ Disable Ctrl + / Ctrl - / Ctrl = zoom on desktop
     document.addEventListener('keydown', function (event) {
       if ((event.ctrlKey || event.metaKey) && (event.key === '+' || event.key === '-' || event.key === '=')) {
         event.preventDefault();
       }
     });
-
+  
     // ❌ Disable zoom with Ctrl + mouse wheel
     window.addEventListener('wheel', function (e) {
       if (e.ctrlKey) {
@@ -684,6 +702,7 @@
       }
     }, { passive: false });
   </script>
+  
 
 
 
