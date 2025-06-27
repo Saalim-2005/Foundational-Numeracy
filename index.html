@@ -1,0 +1,697 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Foundational Numeracy Training</title>
+  <meta name="description"
+    content="Official Foundational Numeracy Training by Javaid Ahmad Bhat. From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8">
+
+  <!-- ✅ Open Graph Meta Tags for Social Media Previews -->
+  <meta property="og:title" content="Foundational Numeracy Training">
+  <meta property="og:description" content="From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8">
+  <meta property="og:image" content="https://saalim-2005.github.io/nep2020-math-training/banner.jpeg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saalim-2005.github.io/nep2020-math-training/">
+
+  <!-- ✅ Twitter Card Preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Foundational Numeracy Training">
+  <meta name="twitter:description" content="From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8">
+  <meta name="twitter:image" content="https://saalim-2005.github.io/nep2020-math-training/banner.jpeg">
+  <!-- ✅ Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+  <style>
+    :root {
+      --primary-color: #00796B;
+      /* Teal */
+      --accent-color: #FF7043;
+      /* Coral */
+      --background: linear-gradient(to bottom right, #e0f2f1, #fff3e0);
+      /* Soft Teal to Cream */
+      --text-color: #333;
+      --card-bg: rgba(255, 255, 255, 0.75);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--background);
+      color: var(--text-color);
+      backdrop-filter: blur(5px);
+      transition: background 0.4s ease, color 0.4s ease;
+      text-align: center;
+    }
+
+    header {
+      background: linear-gradient(to right, #00796B, #009688);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    header p {
+      width: 100%;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin: 2rem 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: justify;
+      z-index: 1;
+      position: relative;
+    }
+
+    section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, #00796B, #009688);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: transform 0.2s, background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #004d40;
+      animation: pulse 0.6s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.05);
+      }
+    }
+
+    .tribute-image img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      display: block;
+      margin: auto;
+    }
+
+    .quote-box {
+      background: rgba(255, 255, 255, 0.6);
+      border-left: 6px solid var(--primary-color);
+      padding: 20px;
+      font-style: italic;
+      margin-top: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      text-align: justify;
+    }
+
+    .quote-box::before {
+      content: "“";
+      font-size: 2rem;
+      color: var(--accent-color);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      color: #444;
+      font-size: 14px;
+      border-top: 1px solid #ccc;
+      backdrop-filter: blur(4px);
+      z-index: 1;
+      position: relative;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 14px;
+      border: none;
+      background: #FF7043;
+      color: white;
+      border-radius: 50px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .dark {
+      background: #263238 !important;
+      color: #e0f2f1 !important;
+    }
+
+    .dark section,
+    .dark .quote-box,
+    .dark footer {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ddd !important;
+    }
+
+    .dark .btn {
+      background: #444 !important;
+    }
+
+    .dark .btn:hover {
+      background: #666 !important;
+    }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    #lightbox span {
+      color: white;
+      font-size: 2rem;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-section div[style*="flex-wrap"] {
+        flex-direction: column;
+        align-items: center !important;
+      }
+
+      .quiz-section .btn {
+        margin: 0 auto !important;
+      }
+
+      .quiz-section p {
+        text-align: center !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .quiz-section div[style*="flex-wrap"] {
+        align-items: center !important;
+      }
+
+      .quiz-section .btn {
+        margin-top: 0;
+        margin-bottom: 0;
+        align-self: center;
+      }
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    /* ✅ Aesthetic Quote Block */
+    .aesthetic-quote {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-left: 6px solid var(--accent-color);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      font-style: italic;
+      text-align: center;
+      color: var(--primary-color);
+      position: relative;
+      backdrop-filter: blur(6px);
+      z-index: 1;
+    }
+
+    .aesthetic-quote::before {
+      content: "“";
+      font-size: 3.5rem;
+      color: var(--accent-color);
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-family: serif;
+      opacity: 0.2;
+    }
+
+    .aesthetic-quote p {
+      font-size: 1.5rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .aesthetic-quote span {
+      display: block;
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader"
+    style="position:fixed; top:0; left:0; width:100%; height:100%; background:white; display:flex; justify-content:center; align-items:center; z-index:9999;">
+    <span style="font-size:1.2rem; color:#005a87;">Loading…</span>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <button onclick="document.body.classList.toggle('dark')"
+    style="position:fixed; top:15px; right:15px; z-index:1000; background: #333; color: white; border:none; padding: 8px 12px; border-radius: 8px;">🌙
+    Toggle Mode</button>
+
+  <header>
+    <h1>Foundational Numeracy Training</h1>
+    <p>From Counting to Confidence: Reimagining Numeracy Teaching for Grades 1–8</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>📘 Training Overview</h2>
+      <p>This training is designed to empower teachers in delivering <strong>Foundational Numeracy</strong> using
+        strategies aligned with <strong>NEP 2020</strong>. Moving away from rote methods, this session focuses on
+        joyful, inclusive, and concept-based approaches to math teaching, especially for early and middle grades.
+        <br><strong>Teachers will explore:</strong>
+      </p>
+      <ul>
+        <li>The meaning and scope of Foundational Numeracy in India's educational context</li>
+        <li>Key policy goals from NEP 2020, including expected learning outcomes by grade
+        </li>
+        <li>The Concrete–Pictorial–Abstract (CPA) approach to help students build strong number sense
+        </li>
+        <li>Effective strategies such as math games, manipulatives, and real-life application</li>
+        <li>Practical demonstrations of how to teach place value, addition, time, number bonds, and patterns using
+          low-cost or no-cost methods</li>
+      </ul>
+      <strong>“Participants will:”</strong>
+      <ul>
+        <li>Engage in hands-on math games and puzzles</li>
+        <li>Collaboratively redesign a math topic using foundational principles
+        </li>
+        <li>Leave with ready-to-use tools and the confidence to apply joyful numeracy methods in the classroom
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🎯 Learning Objectives</h2>
+      <ul>
+        <li>Understand key pedagogical reforms...</li>
+        <li>Apply age-appropriate, activity-based strategies...</li>
+        <li>Integrate technology and arts...</li>
+        <li>Design competency-based lesson plans</li>
+        <li>Use assessment for learning...</li>
+      </ul>
+    </section>
+    <section>
+      <h2>👨‍🏫 About the Speaker</h2>
+      <p><strong>🧑‍🏫 Javaid Ahmad Bhat,</strong> also known as Javaid Jawad, is a passionate educator and the
+        Headmaster of
+        Government Middle School Onagam in Bandipora district, Jammu and Kashmir. With over two decades of experience,
+        he has taught Mathematics ➕, Science 🔬, and English 📘, inspiring countless students through his engaging and
+        value-driven teaching style. On September 5, 2021, he was honored with the Best Teacher Award 🏆 by the J&K
+        Administration in recognition of his commitment, honesty, and tireless efforts in improving the quality of
+        education. Under his leadership, student enrollment at his school doubled 📈, thanks to his innovative
+        practices and strong community involvement. He is also an active volunteer with the J&K Yateem Foundation 🤝,
+        where he works for educational upliftment and youth development. Respected widely as a role model 🌟, he
+        continues to transform lives through education and service.
+
+        💬 Public Praise
+        Described as an inspiring figure in rural education, especially for uplifting under-resourced schools and
+        making them centers of active learning and discipline.</p>
+    </section>
+    <section>
+      <div class="aesthetic-quote">
+        <p>“<strong>Give me the child until he is 7 and I will show you the man</strong>”</p>
+        <span>— Aristotle, 300 BC</span>
+        <div class="btn-container">
+          <a class="btn" href="https://youtu.be/HUsMjUrw5oY?si=CrN91v_--RCWF_VW" target="_blank">
+            Prof. Mushtaq Siddiqui </a>
+        </div>
+    </section>
+    <section class="quiz-section">
+      <h2>🧠 Quiz</h2>
+      <p style="text-align: center; font-size: 1.05rem;">Test your knowledge.</p>
+
+      <div
+        style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px; margin-top: 20px;">
+        <!-- Left: Quiz Button (adjusted upward) -->
+        <div style="display: flex; flex-direction: column; align-items: center; transform: translateY(-15px);">
+          <a class="btn" href="https://forms.gle/4TUvpkXNCyAgdbrJA" target="_blank" style="text-align: center;">
+            Start the Quiz
+          </a>
+        </div>
+
+        <!-- Right: QR Code -->
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+          <img src="Quiz.png" alt="Quiz QR Code"
+            style="height: 140px; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"
+            onclick="toggleQRPopup()" />
+          <div id="qr-popup" style="
+                  display: none;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  background: white;
+                  padding: 10px;
+                  border-radius: 12px;
+                  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+                  z-index: 10;">
+            <span onclick="toggleQRPopup()"
+              style="position: absolute; top: 5px; right: 8px; font-size: 18px; font-weight: bold; cursor: pointer; color: #444;">&times;</span>
+            <img src="Quiz.png" alt="Zoomed QR Code" style="height: 280px; border-radius: 10px;">
+          </div>
+          <p style="font-size: 0.95rem; font-style: italic; color: #444; margin-top: 8px;">Scan the QR Code.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ MOVE THIS OUTSIDE QUIZ SECTION -->
+    <section class="games-section">
+      <h2>🎮 Math Games & Activities</h2>
+      <div class="btn-row">
+
+        <a class="btn" href="mathrelaygame.html" target="_blank">Math Relay Game</a>
+        <a class="btn" href="mathclickgame.html" target="_blank">Math Click Game</a>
+        <a class="btn" href="https://connectdots.io/" target="_blank">Dot Connect</a>
+        <a class="btn" href="numbergame.html" target="_blank">Number Game</a>
+
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="https://toytheater.com/category/math-games/" target="_blank">Game/Activity 1</a>
+        <a class="btn" href="https://www.coolmath4kids.com/" target="_blank">Game/Activity 2</a>
+        <a class="btn" href="https://www.funbrain.com/math-zone" target="_blank">Game/Activity 3</a>
+        <a class="btn" href="https://www.mathplayground.com/" target="_blank">Game/Activity 4</a>
+      </div>
+    </section> <!-- ✅ This was missing -->
+
+    <section>
+      <h2>🎥 Videos/Audio</h2>
+      <div class="btn-container">
+        <a class="btn" href="https://drive.google.com/file/d/1MQikTsx_psjuBfae8LWZ8cl_2wyC1Jox/view" target="_blank">
+          Sharpen Your Axe</a></div>
+      <div class="btn-container">
+        <a class="btn" href=" https://drive.google.com/file/d/1lzb-iWdiLgDQHrtCFbKcCjRZOrI2UIDf/view" target="_blank">
+          Kashmiri Rhyme</a>
+        <a class="btn" href=" https://drive.google.com/file/d/1gQUnw1l8MPbZUJW1s717pk1TFS6WxS3G/view?usp=sharing" target="_blank">
+          Dice</a>
+        <a class="btn" href="https://drive.google.com/file/d/18YGMaZPwuQ6Tu4_zZLLjX5z_e9ubp3YT/view?usp=sharing" target="_blank">
+          Operations</a>
+        <a class="btn" href="https://drive.google.com/file/d/1lp7nhjsoDOtwlquvPsxCRaXErWWa6MYd/view?usp=sharing" target="_blank">
+          Number Sense</a>
+        <a class="btn" href="https://drive.google.com/file/d/17495w0s3CrJcVx84-15N8bUWiQGnLKRB/view?usp=sharing" target="_blank">
+          Playing Cards</a>
+        <a class="btn" href="https://drive.google.com/file/d/14Zokitq-jGC4li0uZljWmFrJ0JSyefiQ/view?usp=sharing" target="_blank">
+          Music With Numbers</a>
+        <a class="btn" href="https://drive.google.com/file/d/1GwRjO2qIr_jm8ePmzCYsCU-iD5sq3Qgu/view?usp=sharing" target="_blank">
+          Operations 2</a>
+        <a class="btn" href="https://drive.google.com/file/d/1sjOJUTn8YRqX-fehg4i-CD2PPiO6MR2u/view?usp=sharing" target="_blank">
+          Dice 2</a>
+        <a class="btn" href="https://drive.google.com/file/d/1DBkYev4aWD-wK0DMfO_EyFbqMN0PheaJ/view?usp=sharing" target="_blank">
+          Geometry</a>
+        <a class="btn" href="https://www.youtube.com/watch?v=KlREqiO6t2s" target="_blank">
+          Play Way Method</a>
+
+      </div>
+    </section>
+
+
+    <!-- ✅ PDF section also OUTSIDE -->
+    <section id="pdf-section">
+      <h2>📄 View Full Training PDF</h2>
+      <div style="position: relative; max-width: 100%; margin: auto;">
+        <div id="pdf-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+             background: rgba(255,255,255,0.8); display: flex; justify-content: center; 
+             align-items: center; font-weight: bold; font-size: 1.2rem; color: #005a87;">
+          Loading PDF…
+        </div>
+
+        <iframe id="pdf-frame"
+          src="https://docs.google.com/gview?url=https://saalim-2005.github.io/nep2020-math-training/understanding-pedagogical-reforms-of-nep-2020.pdf&embedded=true"
+          width="100%" height="600px" style="border: none; border-radius: 12px;"></iframe>
+      </div>
+
+      <div class="btn-container">
+        <a class="btn" href="https://saalim-2005.github.io/nep2020-math-training/Foundational-Numeracy.pdf"
+          target="_blank">📥 Download PDF</a>
+
+        <a class="btn" href="https://saalim-2005.github.io/nep2020-math-training/Foundational-Numeracy.pdf"
+          target="_blank">🖥️ Fullscreen View</a>
+      </div>
+    </section>
+
+
+    <section class="quiz-section">
+      <h2>📝 Feedback Form</h2>
+
+      <div
+        style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px; margin-top: 20px;">
+        <!-- Left: Feedback Button -->
+        <div style="display: flex; flex-direction: column; align-items: center; transform: translateY(-15px);">
+          <a class="btn" href="https://forms.gle/eFKcwWEcHtkmxyvD6" target="_blank" style="text-align: center;">
+            🧾 Start Feedback
+          </a>
+        </div>
+
+        <!-- Right: QR Code for Feedback -->
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+          <img src="Quiz2.png" alt="Feedback QR Code"
+            style="height: 140px; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);"
+            onclick="toggleQRPopupFeedback()" />
+          <div id="qr-popup-feedback" style="
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                padding: 10px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+                z-index: 10;">
+            <span onclick="toggleQRPopupFeedback()"
+              style="position: absolute; top: 5px; right: 8px; font-size: 18px; font-weight: bold; cursor: pointer; color: #444;">&times;</span>
+            <img src="Quiz2.png" alt="Zoomed QR Code" style="height: 280px; border-radius: 10px;">
+          </div>
+          <p style="font-size: 0.95rem; font-style: italic; color: #444; margin-top: 8px;">📱 Scan the QR Code.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+    <section>
+      <h2>🔔 Follow / Subscribe Me</h2>
+      <p style="text-align: center;">Stay connected for more educational updates and joyful math teaching content.</p>
+      <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 20px;">
+        <a href="https://www.facebook.com/javaid.jawad.56" target="_blank" title="Facebook">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook"
+            style="width: 40px; height: 40px; transition: transform 0.3s ease; filter: invert(18%) sepia(73%) saturate(747%) hue-rotate(182deg) brightness(91%) contrast(91%);"
+            onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="https://x.com/JavaidJawad" target="_blank" title="X">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg" alt="X"
+            style="width: 40px; height: 40px; transition: transform 0.3s ease; filter: invert(100%) brightness(0%);"
+            onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="https://www.youtube.com/@Javaid_Jawad_" target="_blank" title="YouTube">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" alt="YouTube"
+            style="width: 40px; height: 40px; transition: transform 0.3s ease; filter: invert(16%) sepia(97%) saturate(7490%) hue-rotate(3deg) brightness(92%) contrast(108%);"
+            onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <a href="https://www.instagram.com/javaidjawad/" target="_blank" title="Instagram">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram"
+            style="width: 40px; height: 40px; transition: transform 0.3s ease; filter: invert(33%) sepia(84%) saturate(412%) hue-rotate(299deg) brightness(98%) contrast(93%);"
+            onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Javaid Jawad | Developed by
+    <a href="https://www.instagram.com/saalimbhatt/" title="Saalim Bhat" target="_blank"
+      style="color: blue; text-decoration: underline;">
+      Saalim Bhat
+    </a>
+  </footer>
+
+  <div id="lightbox">
+    <span onclick="document.getElementById('lightbox').style.display='none'">&times;</span>
+    <img src="Quiz.png" alt="Quiz QR Full Image" />
+  </div>
+
+  <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Top</button>
+
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      document.getElementById("preloader").style.display = "none";
+    });
+
+    // Section reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll("section").forEach(section => {
+      observer.observe(section);
+    });
+
+    // ESC key to close QR popup and lightbox
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const popup = document.getElementById('qr-popup');
+        const lightbox = document.getElementById('lightbox');
+        const feedbackPopup = document.getElementById('qr-popup-feedback');
+        if (popup) popup.style.display = 'none';
+        if (lightbox) lightbox.style.display = 'none';
+        if (feedbackPopup) feedbackPopup.style.display = 'none';
+      }
+    });
+
+    // ✅ QR Code Toggle Function (Quiz)
+    function toggleQRPopup() {
+      const popup = document.getElementById('qr-popup');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // ✅ QR Code Toggle Function (Feedback)
+    function toggleQRPopupFeedback() {
+      const popup = document.getElementById('qr-popup-feedback');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // ✅ PDF Loading Overlay Hide
+    const pdfFrame = document.getElementById('pdf-frame');
+    if (pdfFrame) {
+      pdfFrame.addEventListener('load', function () {
+        const loadingDiv = document.getElementById('pdf-loading');
+        if (loadingDiv) loadingDiv.style.display = 'none';
+      });
+    }
+
+    // ✅ PDF Fullscreen Toggle
+    function openPDFFullscreen() {
+      window.open(
+        'https://saalim-2005.github.io/nep2020-math-training/Foundational-Numeracy.pdf',
+        '_blank'
+      );
+    }
+
+    // ❌ Disable Ctrl + / Ctrl - / Ctrl = zoom on desktop
+    document.addEventListener('keydown', function (event) {
+      if ((event.ctrlKey || event.metaKey) && (event.key === '+' || event.key === '-' || event.key === '=')) {
+        event.preventDefault();
+      }
+    });
+
+    // ❌ Disable zoom with Ctrl + mouse wheel
+    window.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  </script>
+
+
+
+
+</body>
+
+</html>
+
+</body>
+
+</html>

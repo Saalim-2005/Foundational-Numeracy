@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Math Click Game</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #333;
+    }
+    #questionBox {
+      background: #ffffff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+    }
+    #gameBox {
+      background: #fff;
+      border: 3px solid #2196f3;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      max-width: 500px;
+      width: 90%;
+    }
+    .bubble {
+      background: #ffd54f;
+      border: 2px solid #ff6f00;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s, opacity 0.3s;
+    }
+    .bubble:hover {
+      transform: scale(1.1);
+      background-color: #fff176;
+    }
+    .pop {
+      animation: popEffect 0.3s ease forwards;
+    }
+    @keyframes popEffect {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    #scoreBoard {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    #settingsPopup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #settingsBox {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    #settingsBox select, #settingsBox input {
+      font-size: 16px;
+      margin: 10px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="settingsPopup">
+    <div id="settingsBox">
+      <h3>🎮 Choose Your Settings</h3>
+      <label>Difficulty:
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label><br/>
+      <label>Operation:
+        <select id="operation">
+          <option value="all">All</option>
+          <option value="+">Addition (+)</option>
+          <option value="-">Subtraction (-)</option>
+          <option value="*">Multiplication (×)</option>
+          <option value="/">Division (÷)</option>
+        </select>
+      </label><br/>
+      <label>Number of Questions:
+        <input type="number" id="questionCount" value="10" min="2" max="50" />
+      </label><br/>
+      <button onclick="startGame()">Start Game</button>
+    </div>
+  </div>
+
+  <h2>🧠 Math Challenge Box</h2>
+  <div id="questionBox">Question: <span id="question"></span></div>
+  <div id="scoreBoard">
+    ⏳ Time Left: <span id="timer">20</span>s<br />
+    ✅ Correct: <span id="correct">0</span> |
+    ❌ Wrong: <span id="wrong">0</span> |
+    ⏱ Missed: <span id="missed">0</span>
+  </div>
+  <div id="gameBox"></div>
+  <div id="reviewBox"></div>
+
+  <script>
+    const questionEl = document.getElementById("question");
+    const timerEl = document.getElementById("timer");
+    const correctEl = document.getElementById("correct");
+    const wrongEl = document.getElementById("wrong");
+    const missedEl = document.getElementById("missed");
+    const gameBox = document.getElementById("gameBox");
+    const settingsPopup = document.getElementById("settingsPopup");
+    const reviewBox = document.getElementById("reviewBox");
+
+    let correct = 0, wrong = 0, missed = 0;
+    let rounds = 10, roundCount = 0, time = 20;
+    let timerInterval;
+    let totalTimeTaken = 0;
+    let currentDifficulty = "easy";
+    let currentOperation = "+";
+    let currentAnswer = 0;
+    let questionLog = [];
+
+    function getRandomOperation() {
+      const ops = ['+', '-', '*', '/'];
+      return ops[Math.floor(Math.random() * ops.length)];
+    }
+
+    function generateQuestion(difficulty, operation) {
+      let a, b, result;
+      if (difficulty === 'easy') {
+        a = Math.floor(Math.random() * 10 + 1);
+        b = Math.floor(Math.random() * 10 + 1);
+      } else if (difficulty === 'medium') {
+        a = Math.floor(Math.random() * 20 + 1);
+        b = Math.floor(Math.random() * 20 + 1);
+      } else {
+        a = Math.floor(Math.random() * 50 + 1);
+        b = Math.floor(Math.random() * 50 + 1);
+      }
+
+      if (operation === 'all') operation = getRandomOperation();
+
+      if (operation === '-') {
+        if (b > a) [a, b] = [b, a];
+        result = a - b;
+      } else if (operation === '*') {
+        result = a * b;
+      } else if (operation === '/') {
+        result = Math.floor(a / b);
+        a = result * b;
+      } else {
+        result = a + b;
+      }
+      currentAnswer = result;
+      questionEl.textContent = `${a} ${operation} ${b}`;
+      return { question: `${a} ${operation} ${b}`, answer: result };
+    }
+
+    function renderOptions() {
+      gameBox.innerHTML = "";
+      const correctIndex = Math.floor(Math.random() * 9);
+      for (let i = 0; i < 9; i++) {
+        const val = i === correctIndex ? currentAnswer : Math.floor(Math.random() * (currentAnswer + 20));
+        const btn = document.createElement("div");
+        btn.className = "bubble";
+        btn.textContent = val;
+        btn.onclick = () => handleClick(val, btn);
+        gameBox.appendChild(btn);
+      }
+    }
+
+    function handleClick(val, btn) {
+      clearInterval(timerInterval);
+      btn.classList.add("pop");
+      const wasCorrect = val === currentAnswer;
+      if (wasCorrect) {
+        correct++;
+        correctEl.textContent = correct;
+      } else {
+        wrong++;
+        wrongEl.textContent = wrong;
+      }
+      questionLog.push({ question: questionEl.textContent, selected: val, correct: currentAnswer, status: wasCorrect ? '✅' : '❌' });
+      totalTimeTaken += (20 - time);
+      setTimeout(nextRound, 300);
+    }
+
+    function nextRound() {
+      if (roundCount >= rounds) return showResults();
+      roundCount++;
+      const question = generateQuestion(currentDifficulty, currentOperation);
+      renderOptions();
+      time = 20;
+      timerEl.textContent = time;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        time--;
+        timerEl.textContent = time;
+        if (time <= 0) {
+          clearInterval(timerInterval);
+          missed++;
+          missedEl.textContent = missed;
+          questionLog.push({ question: questionEl.textContent, selected: '⏱', correct: currentAnswer, status: '⏱ Missed' });
+          totalTimeTaken += 20;
+          nextRound();
+        }
+      }, 1000);
+    }
+
+    function showResults() {
+      clearInterval(timerInterval);
+      const total = correct + wrong + missed;
+      const score = Math.round((correct / total) * 100);
+      const avgTime = Math.round(totalTimeTaken / rounds);
+      let badge = "🎖 Participant";
+      if (score === 100 && avgTime <= 10) badge = "🏆 Champion";
+      else if (score >= 80) badge = "🥇 Gold Star";
+      else if (score >= 60) badge = "🥈 Silver Star";
+      else if (score >= 40) badge = "🥉 Bronze Star";
+
+      const summary = `🎯 Game Over!\nCorrect: ${correct}\nWrong: ${wrong}\nMissed: ${missed}\nScore: ${score}/100\n⏱ Avg Time: ${avgTime}s\n${badge}`;
+      alert(summary);
+      reviewBox.innerHTML = `<h3>📋 Review Your Answers</h3><ul>${questionLog.map(q => `<li>${q.status} ${q.question} = ${q.correct} (You: ${q.selected})</li>`).join('')}</ul>`;
+    }
+
+    function startGame() {
+      currentDifficulty = document.getElementById("difficulty").value;
+      currentOperation = document.getElementById("operation").value;
+      rounds = parseInt(document.getElementById("questionCount").value);
+      settingsPopup.style.display = "none";
+      nextRound();
+    }
+  </script>
+</body>
+</html>
